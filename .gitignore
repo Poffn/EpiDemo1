@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ######################
 ## EPiServer Files
 ######################
@@ -364,3 +365,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+=======
+######################
+## EPiServer Files
+######################
+*License.config
+>>>>>>> 54f00a4 (Initial commit)
