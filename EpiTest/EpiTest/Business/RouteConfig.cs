@@ -13,7 +13,7 @@ namespace EpiTest.Business
         public static void MapRoutes()
         {            
             RouteTable.Routes.MapRoute(name: "RegisterRetailer", 
-                url: "register/retailer",
+                url: "RegisterRetailer",
                 defaults: new { Controller = "RegisterRetailer", Action = "Index" });
         }
     }
