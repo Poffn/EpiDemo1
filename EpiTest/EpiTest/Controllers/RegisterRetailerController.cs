@@ -11,6 +11,7 @@ using EPiServer.Security;
 using EPiServer.DataAbstraction;
 using EPiServer.Personalization;
 using System.EnterpriseServices;
+using EpiTest.Business.UserRegistration.Interfaces;
 
 namespace EpiTest.Controllers
 {
@@ -19,10 +20,11 @@ namespace EpiTest.Controllers
     /// </summary>
     public class RegisterRetailerController : Controller
     {
-        const string AdminRoleName = "WebAdmins";
         public const string ErrorKey = "CreateError";
 
-        
+        Injected<IUserCreationHandler> UserCreationHandler;
+        Injected<UIUserProvider> UIUserProvider;
+        Injected<UISignInManager> UISignInManager;
 
         public ActionResult Index()
         {
@@ -35,35 +37,24 @@ namespace EpiTest.Controllers
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Index(RegisterViewModel model)
+        public ActionResult Index(RegisterRetailerViewModel model)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    UIUserCreateStatus status;
-            //    IEnumerable<string> errors = Enumerable.Empty<string>();
-            //    var result = UIUserProvider.CreateUser(model.Username, model.Password, model.Email, null, null, true, out status, out errors);
-            //    if (status == UIUserCreateStatus.Success)
-            //    {
-            //        UIRoleProvider.CreateRole(AdminRoleName);
-            //        UIRoleProvider.AddUserToRoles(result.Username, new string[] { AdminRoleName });
+            if (ModelState.IsValid)
+            {
+                bool success;
+                IEnumerable<string> errors = Enumerable.Empty<string>();
+                UserCreationHandler.Service.CreateUser(model, out success, out errors);
+                if (success)
+                {
 
-            //        if (ProfileManager.Enabled)
-            //        {
-            //            var profile = EPiServerProfile.Wrap(ProfileBase.Create(result.Username));
-            //            profile.Email = model.Email;
-            //            profile.Save();
-            //        }
-
-            //        AdministratorRegistrationPage.IsEnabled = false;
-            //        SetFullAccessToWebAdmin();
-            //        var resFromSignIn = UISignInManager.SignIn(UIUserProvider.Name, model.Username, model.Password);
-            //        if (resFromSignIn)
-            //        {
-            //            return Redirect(UrlResolver.Current.GetUrl(ContentReference.StartPage));
-            //        }
-            //    }
-            //    AddErrors(errors);
-            //}
+                    var resFromSignIn = UISignInManager.Service.SignIn(UIUserProvider.Service.Name, model.Username, model.Password);
+                    if (resFromSignIn)
+                    {
+                        return Redirect(UrlResolver.Current.GetUrl(ContentReference.StartPage));
+                    }
+                }
+                AddErrors(errors);
+            }
             // If we got this far, something failed, redisplay form
             return View(model);
         }
@@ -73,27 +64,6 @@ namespace EpiTest.Controllers
             foreach (var error in errors)
             {
                 ModelState.AddModelError(ErrorKey, error);
-            }
-        }
-        UIUserProvider UIUserProvider
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<UIUserProvider>();
-            }
-        }
-        UIRoleProvider UIRoleProvider
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<UIRoleProvider>();
-            }
-        }
-        UISignInManager UISignInManager
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<UISignInManager>();
             }
         }
 

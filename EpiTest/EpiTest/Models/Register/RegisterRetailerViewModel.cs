@@ -1,9 +1,10 @@
+using EpiTest.Business.UserRegistration.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 
 namespace EpiTest.Models
 {
-    public class RegisterRetailerViewModel
+    public class RegisterRetailerViewModel:IUserRegistrationInformation
     {
         [Required]
         [Display(Name = "Username")]

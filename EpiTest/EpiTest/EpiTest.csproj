@@ -287,7 +287,7 @@
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ItemGroup>
-    <Compile Include="Business\AdministratorRegistrationPage - Copy.cs" />
+    <Compile Include="Business\AdministratorRegistrationPage.cs" />
     <Compile Include="Business\Channels\DisplayResolutionBase.cs" />
     <Compile Include="Business\Channels\DisplayResolutions.cs" />
     <Compile Include="Business\Channels\MobileChannel.cs" />
@@ -297,6 +297,10 @@
     <Compile Include="Business\EditorDescriptors\ContactPageSelectionFactory.cs" />
     <Compile Include="Business\EditorDescriptors\ContactPageSelector.cs" />
     <Compile Include="Business\EditorDescriptors\StringListEditorDescriptor.cs" />
+    <Compile Include="Business\UserRegistration\Interfaces\IUserRegistrationHandler.cs" />
+    <Compile Include="Business\UserRegistration\Handlers\AdminRegistrationHandler.cs" />
+    <Compile Include="Business\UserRegistration\Handlers\UserRegistrationHandler.cs" />
+    <Compile Include="Business\UserRegistration\Handlers\RetailerRegistrationHandler.cs" />
     <Compile Include="Business\IModifyLayout.cs" />
     <Compile Include="Business\Initialization\BundleConfig.cs" />
     <Compile Include="Business\Initialization\CustomizedRenderingInitialization.cs" />
@@ -361,6 +365,7 @@
     <Compile Include="Models\Pages\StandardPage.cs" />
     <Compile Include="Models\Pages\StartPage.cs" />
     <Compile Include="Models\Properties\PropertyStringList.cs" />
+    <Compile Include="Business\UserRegistration\Interfaces\IRegistrationInformation.cs" />
     <Compile Include="Models\Register\RegisterRetailerViewModel.cs" />
     <Compile Include="Models\Register\RegisterViewModel.cs" />
     <Compile Include="Models\SiteContentType.cs" />

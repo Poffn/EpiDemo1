@@ -10,6 +10,7 @@ using System.Web.Profile;
 using EPiServer.Security;
 using EPiServer.DataAbstraction;
 using EPiServer.Personalization;
+using EpiTest.Business.UserRegistration.Interfaces;
 
 namespace EpiTest.Controllers
 {
@@ -18,8 +19,11 @@ namespace EpiTest.Controllers
     /// </summary>
     public class RegisterController : Controller
     {
-        const string AdminRoleName = "WebAdmins";
         public const string ErrorKey = "CreateError";
+
+        Injected<IUserCreationHandler> UserCreationHandler;
+        Injected<UIUserProvider> UIUserProvider;
+        Injected<UISignInManager> UISignInManager;
 
         public ActionResult Index()
         {
@@ -36,24 +40,13 @@ namespace EpiTest.Controllers
         {
             if (ModelState.IsValid)
             {
-                UIUserCreateStatus status;
+                bool success;
                 IEnumerable<string> errors = Enumerable.Empty<string>();
-                var result = UIUserProvider.CreateUser(model.Username, model.Password, model.Email, null, null, true, out status, out errors);
-                if (status == UIUserCreateStatus.Success)
+                UserCreationHandler.Service.CreateUser(model, out success, out errors);
+                if (success)
                 {
-                    UIRoleProvider.CreateRole(AdminRoleName);
-                    UIRoleProvider.AddUserToRoles(result.Username, new string[] { AdminRoleName });
-
-                    if (ProfileManager.Enabled)
-                    {
-                        var profile = EPiServerProfile.Wrap(ProfileBase.Create(result.Username));
-                        profile.Email = model.Email;
-                        profile.Save();
-                    }
-
-                    AdministratorRegistrationPage.IsEnabled = false;
-                    SetFullAccessToWebAdmin();
-                    var resFromSignIn = UISignInManager.SignIn(UIUserProvider.Name, model.Username, model.Password);
+                    
+                    var resFromSignIn = UISignInManager.Service.SignIn(UIUserProvider.Service.Name, model.Username, model.Password);
                     if (resFromSignIn)
                     {
                         return Redirect(UrlResolver.Current.GetUrl(ContentReference.StartPage));
@@ -63,14 +56,6 @@ namespace EpiTest.Controllers
             }
             // If we got this far, something failed, redisplay form
             return View(model);
-        }
-
-        private void SetFullAccessToWebAdmin()
-        {
-            var securityrep = ServiceLocator.Current.GetInstance<IContentSecurityRepository>();
-            var permissions = securityrep.Get(ContentReference.RootPage).CreateWritableClone() as IContentSecurityDescriptor;
-            permissions.AddEntry(new AccessControlEntry(AdminRoleName, AccessLevel.FullAccess));
-            securityrep.Save(ContentReference.RootPage, permissions, SecuritySaveType.Replace);
         }
 
         private void AddErrors(IEnumerable<string> errors)
@@ -91,27 +76,6 @@ namespace EpiTest.Controllers
             base.OnAuthorization(filterContext);
         }
 
-        UIUserProvider UIUserProvider
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<UIUserProvider>();
-            }
-        }
-        UIRoleProvider UIRoleProvider
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<UIRoleProvider>();
-            }
-        }
-        UISignInManager UISignInManager
-        {
-            get
-            {
-                return ServiceLocator.Current.GetInstance<UISignInManager>();
-            }
-        }
-
+        
     }
 }
