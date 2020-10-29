@@ -297,10 +297,8 @@
     <Compile Include="Business\EditorDescriptors\ContactPageSelectionFactory.cs" />
     <Compile Include="Business\EditorDescriptors\ContactPageSelector.cs" />
     <Compile Include="Business\EditorDescriptors\StringListEditorDescriptor.cs" />
-    <Compile Include="Business\UserRegistration\Interfaces\IUserRegistrationHandler.cs" />
-    <Compile Include="Business\UserRegistration\Handlers\AdminRegistrationHandler.cs" />
-    <Compile Include="Business\UserRegistration\Handlers\UserRegistrationHandler.cs" />
-    <Compile Include="Business\UserRegistration\Handlers\RetailerRegistrationHandler.cs" />
+    <Compile Include="Business\UserRegistration\Interfaces\IUserCreationHandler.cs" />
+    <Compile Include="Business\UserRegistration\UserCreationHandler.cs" />
     <Compile Include="Business\IModifyLayout.cs" />
     <Compile Include="Business\Initialization\BundleConfig.cs" />
     <Compile Include="Business\Initialization\CustomizedRenderingInitialization.cs" />

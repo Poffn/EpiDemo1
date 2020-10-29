@@ -4,8 +4,7 @@ namespace EpiTest.Business.UserRegistration.Interfaces {
 
     interface IUserCreationHandler
     {
-        string Role { get; }
-        void CreateUser(IUserRegistrationInformation userInformation, out bool success, out IEnumerable<string> errors);
+        void CreateUser(IUserCreationInformation userInformation,string role, out bool success, out IEnumerable<string> errors);
 
 
     }

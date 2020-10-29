@@ -1,6 +1,6 @@
 ﻿namespace EpiTest.Business.UserRegistration.Interfaces
 {
-    public interface IUserRegistrationInformation
+    public interface IUserCreationInformation
     {
         string ConfirmPassword { get; set; }
         string Email { get; set; }

@@ -20,6 +20,7 @@ namespace EpiTest.Controllers
     /// </summary>
     public class RegisterRetailerController : Controller
     {
+        public const string Role = "Retailer";
         public const string ErrorKey = "CreateError";
 
         Injected<IUserCreationHandler> UserCreationHandler;
@@ -43,7 +44,7 @@ namespace EpiTest.Controllers
             {
                 bool success;
                 IEnumerable<string> errors = Enumerable.Empty<string>();
-                UserCreationHandler.Service.CreateUser(model, out success, out errors);
+                UserCreationHandler.Service.CreateUser(model,Role, out success, out errors);
                 if (success)
                 {
 

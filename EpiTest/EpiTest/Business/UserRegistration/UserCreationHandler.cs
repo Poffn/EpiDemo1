@@ -8,35 +8,32 @@ using System.Web.Profile;
 
 namespace EpiTest.Business.UserRegistration.Handlers
 {
-    public partial class UserRegistrationHandler : IUserCreationHandler
+    public class UserCreationHandler : IUserCreationHandler
     {
-        public virtual string Role => string.Empty;
         Injected<UIUserProvider> UIUserProvider;
         Injected<UIRoleProvider> UIRoleProvider;
 
-        private void AddUserToRole(string username)
+        private void AddUserToRole(string username,string role)
         {
-            if (!UIRoleProvider.Service.RoleExists(Role))
+            if (!UIRoleProvider.Service.RoleExists(role))
             {
-                UIRoleProvider.Service.CreateRole(Role);
+                UIRoleProvider.Service.CreateRole(role);
             }
 
-            UIRoleProvider.Service.AddUserToRoles(username, new string[] { Role });
+            UIRoleProvider.Service.AddUserToRoles(username, new string[] { role });
         }
 
-        public virtual void CreateUser(IUserRegistrationInformation userInformation, out bool success, out IEnumerable<string> errors)
+        public virtual void CreateUser(IUserCreationInformation userInformation,string role, out bool success, out IEnumerable<string> errors)
         {
             success = false;
-            errors = null;
             UIUserCreateStatus createUserStatus;
-            IEnumerable<string> createUserErrors = System.Linq.Enumerable.Empty<string>();
 
-            var result = UIUserProvider.Service.CreateUser(userInformation.Username, userInformation.Password, userInformation.Email, null, null, true, out createUserStatus, out createUserErrors);
+            var result = UIUserProvider.Service.CreateUser(userInformation.Username, userInformation.Password, userInformation.Email, null, null, true, out createUserStatus, out errors);
             if (createUserStatus == UIUserCreateStatus.Success)
             {
                 success = true;
 
-                AddUserToRole(result.Username);
+                AddUserToRole(result.Username, role);
 
                 if (ProfileManager.Enabled)
                 {
@@ -48,7 +45,6 @@ namespace EpiTest.Business.UserRegistration.Handlers
                 return;
 
             }
-            errors = createUserErrors;
         }
     }
 }

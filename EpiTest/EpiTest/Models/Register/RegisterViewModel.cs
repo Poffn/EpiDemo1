@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace EpiTest.Models
 {
-    public class RegisterViewModel : IUserRegistrationInformation
+    public class RegisterViewModel : IUserCreationInformation
     {
         [Required]
         [Display(Name = "Username")]

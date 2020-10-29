@@ -19,6 +19,7 @@ namespace EpiTest.Controllers
     /// </summary>
     public class RegisterController : Controller
     {
+        public const string Role = "WebAdmins";
         public const string ErrorKey = "CreateError";
 
         Injected<IUserCreationHandler> UserCreationHandler;
@@ -42,10 +43,12 @@ namespace EpiTest.Controllers
             {
                 bool success;
                 IEnumerable<string> errors = Enumerable.Empty<string>();
-                UserCreationHandler.Service.CreateUser(model, out success, out errors);
+                UserCreationHandler.Service.CreateUser(model,Role, out success, out errors);
                 if (success)
                 {
-                    
+                    AdministratorRegistrationPage.IsEnabled = false;
+                    SetFullAccessToWebAdmin();
+
                     var resFromSignIn = UISignInManager.Service.SignIn(UIUserProvider.Service.Name, model.Username, model.Password);
                     if (resFromSignIn)
                     {
@@ -75,7 +78,13 @@ namespace EpiTest.Controllers
             }
             base.OnAuthorization(filterContext);
         }
+        private void SetFullAccessToWebAdmin()
+        {
+            var securityrep = ServiceLocator.Current.GetInstance<IContentSecurityRepository>();
+            var permissions = securityrep.Get(ContentReference.RootPage).CreateWritableClone() as IContentSecurityDescriptor;
+            permissions.AddEntry(new AccessControlEntry(Role, AccessLevel.FullAccess));
+            securityrep.Save(ContentReference.RootPage, permissions, SecuritySaveType.Replace);
+        }
 
-        
     }
 }
