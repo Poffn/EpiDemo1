@@ -21,8 +21,8 @@ namespace EpiTest.Business.RetailPageImporter.Handlers
         public IEnumerable<IRetailPageData> GetRetailPageData()
         {
 
-            var startpage = (EPiServer.Core.ContentReference.StartPage as IContent);
-            var fileReference = (startpage as StartPage)?.RetailPageData;
+            var startpage = ContentLoader.Service.Get<StartPage>(ContentReference.StartPage);
+            var fileReference = startpage.RetailPageData;
             var jsonFile = ContentLoader.Service.Get<JsonFile>(fileReference);
 
             IEnumerable<IRetailPageData> retailPageData;

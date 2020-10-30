@@ -314,6 +314,8 @@
     <Compile Include="Business\Rendering\ICustomCssInContentArea.cs" />
     <Compile Include="Business\Rendering\SiteViewEngine.cs" />
     <Compile Include="Business\Rendering\TemplateCoordinator.cs" />
+    <Compile Include="Business\RetailPageImporter\Handlers\RetailPageEpiImporter.cs" />
+    <Compile Include="Business\RetailPageImporter\Handlers\StartPageReferenceRetailPageContainerLocator.cs" />
     <Compile Include="Business\RetailPageImporter\Interfaces\IRetailPage.cs" />
     <Compile Include="Business\RetailPageImporter\Interfaces\IRetailPageCreator.cs" />
     <Compile Include="Business\RetailPageImporter\Interfaces\IRetailPageContainerLocator.cs" />
@@ -362,6 +364,7 @@
     <Compile Include="Models\Pages\LandingPage.cs" />
     <Compile Include="Models\Pages\NewsPage.cs" />
     <Compile Include="Models\Pages\ProductPage.cs" />
+    <Compile Include="Models\Pages\RetailPage.cs" />
     <Compile Include="Models\Pages\SitePageData.cs" />
     <Compile Include="Models\Pages\StandardPage.cs" />
     <Compile Include="Models\Pages\StartPage.cs" />
