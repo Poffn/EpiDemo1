@@ -37,6 +37,17 @@
       <disabled>EPiServer Search is not configured or is not active for this website.</disabled>
     </searchpagetemplate>
 
+    <retailer>
+      <loggedinas>Logged in as</loggedinas>
+      <logout>logout</logout>
+    </retailer>
+
+  </language>
+  <language name="Swedish" id="sv">
+    <retailer>
+      <loggedinas>Inloggad som</loggedinas>
+      <logout>logga ut</logout>
+    </retailer>
   </language>
 
 </languages>

@@ -5,6 +5,10 @@ using EPiServer.ServiceLocation;
 using EpiTest.Business.Rendering;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
+using EpiTest.Business.UserRegistration.Interfaces;
+using EpiTest.Business.UserRegistration.Handlers;
+using EPiServer.Shell.Dashboard;
+using EpiTest.Controllers;
 
 namespace EpiTest.Business.Initialization
 {
@@ -14,6 +18,10 @@ namespace EpiTest.Business.Initialization
         public void ConfigureContainer(ServiceConfigurationContext context)
         {
             //Implementations for custom interfaces can be registered here.
+
+            //context.StructureMap().Configure(c => c.For<IUserCreationHandler>().Use<AdminCreationHandler>().);
+            context.StructureMap().Configure(c => c.For<IUserCreationHandler>().Use<UserCreationHandler>());
+
 
             context.ConfigurationComplete += (o, e) =>
             {

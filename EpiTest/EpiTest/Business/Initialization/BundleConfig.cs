@@ -27,7 +27,8 @@ namespace EpiTest.Business.Initialization
                 .Include("~/Static/css/bootstrap-responsive.css")
                 .Include("~/Static/css/media.css")
                 .Include("~/Static/css/style.css", new CssRewriteUrlTransform())
-                .Include("~/Static/css/editmode.css"));
+                .Include("~/Static/css/editmode.css")
+                .Include("~/Static/css/retailer.css"));
         }
 
         public void Uninitialize(InitializationEngine context)

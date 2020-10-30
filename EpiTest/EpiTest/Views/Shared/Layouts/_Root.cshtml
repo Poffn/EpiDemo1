@@ -1,4 +1,4 @@
-@using System.Web.Optimization
+﻿@using System.Web.Optimization
 @using EPiServer.Framework.Web.Mvc.Html
 @using EpiTest.Business
 @model IPageViewModel<SitePageData>
@@ -27,6 +27,7 @@
     </head>
 
     <body>
+       
         @if (Model.Layout.IsInReadonlyMode)
         {
             Html.RenderPartial("Readonly", Model);
