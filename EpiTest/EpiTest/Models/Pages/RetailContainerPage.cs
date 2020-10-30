@@ -23,7 +23,6 @@ namespace EpiTest.Models.Pages
 
         [Ignore]
         public IEnumerable<RetailPage> RetailPages => ContentLoader.Service.GetChildren<RetailPage>(this.ContentLink);
-            }
-        }
+            
     }
 }

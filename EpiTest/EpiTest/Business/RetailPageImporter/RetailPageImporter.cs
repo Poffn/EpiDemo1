@@ -22,14 +22,8 @@ namespace EpiTest.Business.RetailPageImporter
             IContent containerPage = RetailPageContainerLocator.Service.GetContainerPage();
             IEnumerable<IRetailPageData> pages = RetailPageService.Service.GetRetailPageData();
 
-            foreach(var page in pages)
-            {
-                if(!RetailPageImporter.Service.ImportPage(page, containerPage, out var error))
-                {
-                    errorList.Add(error);
-                }
-            }
-            errors = errorList;
+            RetailPageImporter.Service.TryImportPages(pages, containerPage, out errors);
+                        
             return (errorList.Count <= 0);
         }
     }
