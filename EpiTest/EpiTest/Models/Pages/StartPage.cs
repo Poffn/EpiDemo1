@@ -4,6 +4,7 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.SpecializedProperties;
 using EpiTest.Models.Blocks;
+using EpiTest.Models.Media;
 
 namespace EpiTest.Models.Pages
 {
@@ -49,6 +50,13 @@ namespace EpiTest.Models.Pages
 
         [Display(GroupName = Global.GroupNames.SiteSettings)]
         public virtual SiteLogotypeBlock SiteLogotype { get; set; }
+
+        [Display(GroupName = Global.GroupNames.SiteSettings)]
+        [AllowedTypes(new[] { typeof(JsonFile) })]
+        public virtual ContentReference RetailPageData { get; set; }
+
+        [Display(GroupName = Global.GroupNames.SiteSettings)]
+        public virtual ContentReference RetailContainerPage { get; set; }
 
     }
 }
