@@ -1,0 +1,19 @@
+@using EPiServer.Personalization;
+@model IPageViewModel<SitePageData>
+
+@if (Model.Layout.LoggedIn && RolePrincipal.Current.IsInRole("Retailer"))
+{
+<div class="retailer">
+    @Html.Translate("/Retailer/LoggedInAs")
+    <span class="retailer-username">
+        @EPiServerProfile.Current.UserName
+    </span>
+    <div class="retailer-logout">
+        <a href="/Util/logout.aspx">
+            @Html.Translate("/Retailer/Logout")
+        </a>
+    </div>
+</div>
+   
+}
+

@@ -3,22 +3,25 @@
 @using System.Web.Optimization
 @using EpiTest.Controllers
 @model EpiTest.Models.RegisterRetailerViewModel
+@{
+    Layout = "";
+}
 
-@*<html>
+<html>
 <head>
     <title>Create Administrator Account</title>
     @Styles.Render("~/bundles/css")
     @Scripts.Render("~/bundles/js")
-</head>*@
+</head>
 
 <body>
     <div class="container">
         <div class="row">
             <div class="span12">
 
-                <h2>Create Administrator Account</h2>
+                <h2>Create Retailer Account</h2>
 
-                @using (Html.BeginForm("/", "Register", FormMethod.Post))
+                @using (Html.BeginForm("/", "RegisterRetailer", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
                     <div class="control-group">

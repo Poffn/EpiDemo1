@@ -420,6 +420,7 @@
     <Content Include="Static\css\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Static\css\jquery-ui.css" />
     <Content Include="Static\css\media.css" />
+    <Content Include="Static\css\retailer.css" />
     <Content Include="Static\css\style.css" />
     <Content Include="Static\gfx\carouselbackground.png" />
     <Content Include="Static\gfx\contact.jpg" />
@@ -510,6 +511,7 @@
     <Content Include="Views\ContactBlock\Index.cshtml" />
     <Content Include="Views\ArticlePage\Index.cshtml" />
     <Content Include="Views\RegisterRetailer\Index.cshtml" />
+    <Content Include="Views\Shared\Retailer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

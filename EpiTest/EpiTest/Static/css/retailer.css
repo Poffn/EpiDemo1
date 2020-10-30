@@ -1,0 +1,21 @@
+﻿.retailer {
+    background-color: orange;
+    color: black;
+    float: left;
+    padding: 0.25rem;
+    width: auto;
+    display: inline-block;
+}
+
+.retailer-username {
+
+    font-weight:bold;
+
+}
+.retailer-logout {
+    
+    float: right;
+    font-weight:bold;
+    margin-left: 10px;
+    
+}

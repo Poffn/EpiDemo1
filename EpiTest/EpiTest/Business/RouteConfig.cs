@@ -10,7 +10,7 @@ namespace EpiTest.Business
     public static class RouteConfig
     {
 
-        public static void MapRoutes()
+        public static void RegisterRoutes()
         {            
             RouteTable.Routes.MapRoute(name: "RegisterRetailer", 
                 url: "RegisterRetailer",

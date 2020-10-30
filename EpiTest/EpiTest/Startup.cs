@@ -27,7 +27,7 @@ namespace EpiTest
             app.UseAdministratorRegistrationPage(() => HttpContext.Current.Request.IsLocal);
 
 
-            RouteConfig.MapRoutes();
+            RouteConfig.RegisterRoutes();
 
             // Use cookie authentication
             app.UseCookieAuthentication(new CookieAuthenticationOptions
