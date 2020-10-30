@@ -302,6 +302,7 @@
     <Compile Include="Business\IModifyLayout.cs" />
     <Compile Include="Business\Initialization\BundleConfig.cs" />
     <Compile Include="Business\Initialization\CustomizedRenderingInitialization.cs" />
+    <Compile Include="Business\Initialization\PublishEventInitializer.cs" />
     <Compile Include="Business\Initialization\DependencyResolverInitialization.cs" />
     <Compile Include="Business\Initialization\DisplayModesInitialization.cs" />
     <Compile Include="Business\Initialization\DisplayRegistryInitialization.cs" />
@@ -316,6 +317,15 @@
     <Compile Include="Business\Rendering\ICustomCssInContentArea.cs" />
     <Compile Include="Business\Rendering\SiteViewEngine.cs" />
     <Compile Include="Business\Rendering\TemplateCoordinator.cs" />
+    <Compile Include="Business\RetailPageImporter\Handlers\IRetailPage.cs" />
+    <Compile Include="Business\RetailPageImporter\Handlers\RetailPageEpiImporter.cs" />
+    <Compile Include="Business\RetailPageImporter\Handlers\StartPageReferenceRetailPageContainerLocator.cs" />
+    <Compile Include="Business\RetailPageImporter\Interfaces\IRetailPage.cs" />
+    <Compile Include="Business\RetailPageImporter\Interfaces\IRetailPageCreator.cs" />
+    <Compile Include="Business\RetailPageImporter\Interfaces\IRetailPageContainerLocator.cs" />
+    <Compile Include="Business\RetailPageImporter\Interfaces\IRetailPageService.cs" />
+    <Compile Include="Business\RetailPageImporter\Handlers\RetailPageFileService.cs" />
+    <Compile Include="Business\RetailPageImporter\RetailPageImporter.cs" />
     <Compile Include="Business\RouteConfig.cs" />
     <Compile Include="Business\ServiceLocatorDependencyResolver.cs" />
     <Compile Include="Business\UIDescriptors\ContainerPageUIDescriptor.cs" />
@@ -347,6 +357,7 @@
     <Compile Include="Models\Blocks\SiteLogotypeBlock.cs" />
     <Compile Include="Models\Blocks\TeaserBlock.cs" />
     <Compile Include="Models\Media\GenericMedia.cs" />
+    <Compile Include="Models\Media\JsonFile.cs" />
     <Compile Include="Models\Media\ImageFile.cs" />
     <Compile Include="Models\Media\VideoFile.cs" />
     <Compile Include="Models\Pages\ArticlePage.cs" />
@@ -359,6 +370,8 @@
     <Compile Include="Models\Pages\LandingPage.cs" />
     <Compile Include="Models\Pages\NewsPage.cs" />
     <Compile Include="Models\Pages\ProductPage.cs" />
+    <Compile Include="Models\Pages\RetailContainerPage.cs" />
+    <Compile Include="Models\Pages\RetailPage.cs" />
     <Compile Include="Models\Pages\SitePageData.cs" />
     <Compile Include="Models\Pages\StandardPage.cs" />
     <Compile Include="Models\Pages\StartPage.cs" />
@@ -510,6 +523,8 @@
     <Content Include="Views\ImageFile\Index.cshtml" />
     <Content Include="Views\ContactBlock\Index.cshtml" />
     <Content Include="Views\ArticlePage\Index.cshtml" />
+    <Content Include="Views\RetailContainerPage\Index.cshtml" />
+    <Content Include="Views\RetailPage\Index.cshtml" />
     <Content Include="Views\RegisterRetailer\Index.cshtml" />
     <Content Include="Views\Shared\Retailer.cshtml" />
     <None Include="Web.Debug.config">

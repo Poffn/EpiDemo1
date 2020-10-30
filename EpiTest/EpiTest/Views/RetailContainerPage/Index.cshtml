@@ -1,0 +1,18 @@
+@using EpiTest
+@model RetailContainerPage
+
+@{ 
+    Layout = "~/Views/Shared/Layouts/_LeftNavigation.cshtml";     
+}
+
+<ul>
+    RetailPages
+    @foreach (var page in Model.RetailPages)
+    {
+        <li>
+            <a href="@page.ExternalURL">@page.name</a>
+        </li>
+    }
+
+
+</ul>
