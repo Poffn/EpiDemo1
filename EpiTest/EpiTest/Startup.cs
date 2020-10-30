@@ -1,6 +1,9 @@
 using System;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.Routing;
 using EPiServer.Cms.UI.AspNetIdentity;
+using EpiTest.Business;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -22,6 +25,9 @@ namespace EpiTest
 
             // Remove to block registration of administrators
             app.UseAdministratorRegistrationPage(() => HttpContext.Current.Request.IsLocal);
+
+
+            RouteConfig.RegisterRoutes();
 
             // Use cookie authentication
             app.UseCookieAuthentication(new CookieAuthenticationOptions

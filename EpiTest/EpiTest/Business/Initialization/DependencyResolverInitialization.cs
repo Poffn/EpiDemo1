@@ -6,6 +6,10 @@ using EpiTest.Business.Rendering;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
 using EpiTest.Business.RetailPageImporter.Interfaces;
+using EpiTest.Business.UserRegistration.Interfaces;
+using EpiTest.Business.UserRegistration.Handlers;
+using EPiServer.Shell.Dashboard;
+using EpiTest.Controllers;
 
 namespace EpiTest.Business.Initialization
 {
@@ -19,6 +23,7 @@ namespace EpiTest.Business.Initialization
             context.StructureMap().Configure(x => x.For<IRetailPageContainerLocator>().Use<RetailPageImporter.Handlers.StartPageReferenceRetailPageContainerLocator>());
             context.StructureMap().Configure(x => x.For<IRetailPageService>().Use<RetailPageImporter.Handlers.RetailPageFileService>());
             context.StructureMap().Configure(x => x.For<IRetailPageImporter>().Use<RetailPageImporter.Handlers.RetailPageEpiImporter>());
+            context.StructureMap().Configure(c => c.For<IUserCreationHandler>().Use<UserCreationHandler>());
 
             context.ConfigurationComplete += (o, e) =>
             {

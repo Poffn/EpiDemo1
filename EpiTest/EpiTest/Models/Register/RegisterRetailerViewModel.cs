@@ -4,12 +4,12 @@ using System.Web.Mvc;
 
 namespace EpiTest.Models
 {
-    public class RegisterViewModel : IUserCreationInformation
+    public class RegisterRetailerViewModel: IUserCreationInformation
     {
         [Required]
-        [Display(Name = "Username")]
-        [RegularExpression(@"^[a-zA-Z0-9_-]+$", ErrorMessage = "Username can only contain letters a-z, numbers, underscores and hyphens.")]
-        [StringLength(20, ErrorMessage = "The {0} field can not be more than {1} characters long.")]
+        [Display(Name = "Company Name")]
+        [RegularExpression(@"^[a-zA-Z0-9_-]+$", ErrorMessage = "Company Name can only contain letters a-z, numbers, underscores and hyphens.")]
+        [StringLength(20, ErrorMessage ="The {0} field can not be more than {1} characters long.")]
         public string Username { get; set; }
 
         [Required]
