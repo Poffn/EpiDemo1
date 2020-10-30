@@ -5,6 +5,7 @@ using EPiServer.ServiceLocation;
 using EpiTest.Business.Rendering;
 using EPiServer.Web.Mvc;
 using EPiServer.Web.Mvc.Html;
+using EpiTest.Business.RetailPageImporter.Interfaces;
 
 namespace EpiTest.Business.Initialization
 {
@@ -14,6 +15,10 @@ namespace EpiTest.Business.Initialization
         public void ConfigureContainer(ServiceConfigurationContext context)
         {
             //Implementations for custom interfaces can be registered here.
+
+            context.StructureMap().Configure(x => x.For<IRetailPageContainerLocator>().Use<RetailPageImporter.Handlers.StartPageReferenceRetailPageContainerLocator>());
+            context.StructureMap().Configure(x => x.For<IRetailPageService>().Use<RetailPageImporter.Handlers.RetailPageFileService>());
+            context.StructureMap().Configure(x => x.For<IRetailPageImporter>().Use<RetailPageImporter.Handlers.RetailPageEpiImporter>());
 
             context.ConfigurationComplete += (o, e) =>
             {
