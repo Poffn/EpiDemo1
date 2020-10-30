@@ -314,6 +314,12 @@
     <Compile Include="Business\Rendering\ICustomCssInContentArea.cs" />
     <Compile Include="Business\Rendering\SiteViewEngine.cs" />
     <Compile Include="Business\Rendering\TemplateCoordinator.cs" />
+    <Compile Include="Business\RetailPageImporter\Interfaces\IRetailPage.cs" />
+    <Compile Include="Business\RetailPageImporter\Interfaces\IRetailPageCreator.cs" />
+    <Compile Include="Business\RetailPageImporter\Interfaces\IRetailPageContainerLocator.cs" />
+    <Compile Include="Business\RetailPageImporter\Interfaces\IRetailPageService.cs" />
+    <Compile Include="Business\RetailPageImporter\Handlers\RetailPageFileService.cs" />
+    <Compile Include="Business\RetailPageImporter\RetailPageImporter.cs" />
     <Compile Include="Business\ServiceLocatorDependencyResolver.cs" />
     <Compile Include="Business\UIDescriptors\ContainerPageUIDescriptor.cs" />
     <Compile Include="Controllers\ContactBlockController.cs" />
@@ -343,6 +349,7 @@
     <Compile Include="Models\Blocks\SiteLogotypeBlock.cs" />
     <Compile Include="Models\Blocks\TeaserBlock.cs" />
     <Compile Include="Models\Media\GenericMedia.cs" />
+    <Compile Include="Models\Media\JsonFile.cs" />
     <Compile Include="Models\Media\ImageFile.cs" />
     <Compile Include="Models\Media\VideoFile.cs" />
     <Compile Include="Models\Pages\ArticlePage.cs" />
