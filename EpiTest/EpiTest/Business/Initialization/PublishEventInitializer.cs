@@ -19,7 +19,6 @@ namespace EpiTest.Business.Initialization
     public class PublishEventInitializer : IInitializableModule
     {
         Injected<IContentLoader> ContentLoader;
-        Injected<IRetailPageImporter> RetailPageImporter;
         public void Initialize(InitializationEngine context)
         {
             var events = context.Locate.ContentEvents();
